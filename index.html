@@ -1,316 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S1 List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S1 List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<style>
-:root {
-  --bg: #f4f4f4;
-    --card: #ffffff;
-      --text: #222;
-        --border: #e0e0e0;
-          --pill: #f1f1f1;
-          }
+  <div class="header">
+    <h2>S1 List</h2>
+    <button class="toggle" id="themeToggle">🌙</button>
+  </div>
 
-          body.dark {
-            --bg: #111;
-              --card: #1c1c1c;
-                --text: #f5f5f5;
-                  --border: #333;
-                    --pill: #2a2a2a;
-                    }
+  <!-- Meals -->
+  <div class="meal-section" id="meals"></div>
 
-                    body {
-                      margin: 0;
-                        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-                          background: var(--bg);
-                            color: var(--text);
-                              padding: 20px;
-                                transition: 0.3s ease;
-                                }
+  <button id="saveBtn" class="save-btn">Save</button>
 
-                                .header {
-                                  display: flex;
-                                    justify-content: space-between;
-                                      align-items: center;
-                                        margin-bottom: 25px;
-                                        }
+  <!-- Duration Dropdown -->
+  <select id="duration">
+    <option>30min</option>
+    <option>45min</option>
+    <option>1h</option>
+    <option>1:15h</option>
+    <option selected>1:30h</option>
+    <option>1:45h</option>
+    <option>2h</option>
+  </select>
 
-                                        .toggle {
-                                          width: 45px;
-                                            height: 45px;
-                                              border-radius: 50%;
-                                                border: 1px solid var(--border);
-                                                  background: var(--card);
-                                                    cursor: pointer;
-                                                      font-size: 18px;
-                                                      }
+  <!-- Schedule -->
+  <div class="schedule" id="schedule"></div>
 
-                                                      .meal-section {
-                                                        margin-bottom: 25px;
-                                                        }
-
-                                                        .meal-row {
-                                                          display: flex;
-                                                            align-items: center;
-                                                              gap: 10px;
-                                                                margin-bottom: 15px;
-                                                                }
-
-                                                                .meal-label {
-                                                                  width: 80px;
-                                                                    opacity: 0.6;
-                                                                    }
-
-                                                                    input {
-                                                                      padding: 10px;
-                                                                        border-radius: 20px;
-                                                                          border: 1px solid var(--border);
-                                                                            background: var(--card);
-                                                                              color: var(--text);
-                                                                                outline: none;
-                                                                                }
-
-                                                                                .add-btn {
-                                                                                  border-radius: 20px;
-                                                                                    border: 1px solid var(--border);
-                                                                                      background: var(--card);
-                                                                                        padding: 8px 14px;
-                                                                                          cursor: pointer;
-                                                                                          }
-
-                                                                                          .pill-container {
-                                                                                            display: flex;
-                                                                                              flex-wrap: wrap;
-                                                                                                gap: 8px;
-                                                                                                  margin-left: 90px;
-                                                                                                  }
-
-                                                                                                  .pill {
-                                                                                                    background: var(--pill);
-                                                                                                      padding: 6px 12px;
-                                                                                                        border-radius: 20px;
-                                                                                                          display: flex;
-                                                                                                            align-items: center;
-                                                                                                              gap: 8px;
-                                                                                                              }
-
-                                                                                                              .pill button {
-                                                                                                                border: none;
-                                                                                                                  background: none;
-                                                                                                                    color: var(--text);
-                                                                                                                      cursor: pointer;
-                                                                                                                        font-weight: bold;
-                                                                                                                        }
-
-                                                                                                                        select {
-                                                                                                                          padding: 10px 14px;
-                                                                                                                            border-radius: 10px;
-                                                                                                                              border: 1px solid var(--border);
-                                                                                                                                background: var(--card);
-                                                                                                                                  color: var(--text);
-                                                                                                                                    margin-bottom: 20px;
-                                                                                                                                    }
-
-                                                                                                                                    .schedule {
-                                                                                                                                      display: grid;
-                                                                                                                                        gap: 10px;
-                                                                                                                                        }
-
-                                                                                                                                        .schedule-row {
-                                                                                                                                          display: grid;
-                                                                                                                                            grid-template-columns: 90px 1fr 1fr;
-                                                                                                                                              gap: 10px;
-                                                                                                                                              }
-
-                                                                                                                                              .cell {
-                                                                                                                                                background: var(--card);
-                                                                                                                                                  border: 1px solid var(--border);
-                                                                                                                                                    padding: 12px;
-                                                                                                                                                      text-align: center;
-                                                                                                                                                        border-radius: 10px;
-                                                                                                                                                        }
-                                                                                                                                                        </style>
-                                                                                                                                                        </head>
-
-                                                                                                                                                        <body>
-
-                                                                                                                                                        <div class="header">
-                                                                                                                                                          <h2>S1 List</h2>
-                                                                                                                                                            <button class="toggle" onclick="toggleTheme()">🌙</button>
-                                                                                                                                                            </div>
-
-                                                                                                                                                            <div class="meal-section" id="meals"></div>
-
-                                                                                                                                                            <select id="duration">
-                                                                                                                                                              <option>30min</option>
-                                                                                                                                                                <option>45min</option>
-                                                                                                                                                                  <option>1h</option>
-                                                                                                                                                                    <option>1:15h</option>
-                                                                                                                                                                      <option selected>1:30h</option>
-                                                                                                                                                                        <option>1:45h</option>
-                                                                                                                                                                          <option>2h</option>
-                                                                                                                                                                          </select>
-
-                                                                                                                                                                          <div class="schedule" id="schedule"></div>
-
-                                                                                                                                                                          <script>
-                                                                                                                                                                          // Day/Night toggle
-                                                                                                                                                                          function toggleTheme() {
-                                                                                                                                                                            document.body.classList.toggle("dark");
-                                                                                                                                                                              const btn = document.querySelector(".toggle");
-                                                                                                                                                                                btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-                                                                                                                                                                                }
-
-                                                                                                                                                                                // Create 3 Meal Inputs
-                                                                                                                                                                                const mealsContainer = document.getElementById("meals");
-
-                                                                                                                                                                                for (let i = 1; i <= 3; i++) {
-                                                                                                                                                                                  const wrapper = document.createElement("div");
-                                                                                                                                                                                    wrapper.innerHTML = `
-                                                                                                                                                                                        <div class="meal-row">
-                                                                                                                                                                                              <div class="meal-label">${i}° Meal</div>
-                                                                                                                                                                                                    <input type="text" id="meal-input-${i}">
-                                                                                                                                                                                                          <button class="add-btn" onclick="addMeal(${i})">Add</button>
-                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                  <div class="pill-container" id="meal-container-${i}"></div>
-                                                                                                                                                                                                                    `;
-                                                                                                                                                                                                                      mealsContainer.appendChild(wrapper);
-                                                                                                                                                                                                                      }
-
-                                                                                                                                                                                                                      function addMeal(i) {
-                                                                                                                                                                                                                        const input = document.getElementById(`meal-input-${i}`);
-                                                                                                                                                                                                                          const container = document.getElementById(`meal-container-${i}`);
-                                                                                                                                                                                                                            if (!input.value.trim()) return;
-
-                                                                                                                                                                                                                              const pill = document.createElement("div");
-                                                                                                                                                                                                                                pill.className = "pill";
-                                                                                                                                                                                                                                  pill.innerHTML = `
-                                                                                                                                                                                                                                      ${input.value}
-                                                                                                                                                                                                                                          <button onclick="this.parentElement.remove()">−</button>
-                                                                                                                                                                                                                                            `;
-                                                                                                                                                                                                                                              container.appendChild(pill);
-                                                                                                                                                                                                                                                input.value = "";
-                                                                                                                                                                                                                                                }
-
-                                                                                                                                                                                                                                                // Schedule
-                                                                                                                                                                                                                                                const times = [
-                                                                                                                                                                                                                                                  "05:00h","06:30h","08:00h","09:30h",
-                                                                                                                                                                                                                                                    "11:00h","12:30h","14:00h","15:30h","17:00h"
-                                                                                                                                                                                                                                                    ];
-
-                                                                                                                                                                                                                                                    const schedule = document.getElementById("schedule");
-
-                                                                                                                                                                                                                                                    times.forEach(time => {
-                                                                                                                                                                                                                                                      const row = document.createElement("div");
-                                                                                                                                                                                                                                                        row.className = "schedule-row";
-                                                                                                                                                                                                                                                          row.innerHTML = `
-                                                                                                                                                                                                                                                              <div class="cell">${time}</div>
-                                                                                                                                                                                                                                                                  <div class="cell">Airlock</div>
-                                                                                                                                                                                                                                                                      <div class="cell">Car</div>
-                                                                                                                                                                                                                                                                        `;
-                                                                                                                                                                                                                                                                          schedule.appendChild(row);
-                                                                                                                                                                                                                                                                          });<script>
-                                                                                                                                                                                                                                                                            // Day/Night toggle
-                                                                                                                                                                                                                                                                            function toggleTheme() {
-                                                                                                                                                                                                                                                                              document.body.classList.toggle("dark");
-                                                                                                                                                                                                                                                                                const btn = document.querySelector(".toggle");
-                                                                                                                                                                                                                                                                                  btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-                                                                                                                                                                                                                                                                                  }
-
-                                                                                                                                                                                                                                                                                  // Create 3 Meal Inputs
-                                                                                                                                                                                                                                                                                  const mealsContainer = document.getElementById("meals");
-
-                                                                                                                                                                                                                                                                                  for (let i = 1; i <= 3; i++) {
-                                                                                                                                                                                                                                                                                    const wrapper = document.createElement("div");
-                                                                                                                                                                                                                                                                                      wrapper.innerHTML = `
-                                                                                                                                                                                                                                                                                          <div class="meal-row">
-                                                                                                                                                                                                                                                                                                <div class="meal-label">${i}° Meal</div>
-                                                                                                                                                                                                                                                                                                      <input type="text" id="meal-input-${i}">
-                                                                                                                                                                                                                                                                                                            <button class="add-btn" onclick="addMeal(${i})">Add</button>
-                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                    <div class="pill-container" id="meal-container-${i}"></div>
-                                                                                                                                                                                                                                                                                                                      `;
-                                                                                                                                                                                                                                                                                                                        mealsContainer.appendChild(wrapper);
-                                                                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                                                                        function addMeal(i) {
-                                                                                                                                                                                                                                                                                                                          const input = document.getElementById(`meal-input-${i}`);
-                                                                                                                                                                                                                                                                                                                            const container = document.getElementById(`meal-container-${i}`);
-                                                                                                                                                                                                                                                                                                                              if (!input.value.trim()) return;
-
-                                                                                                                                                                                                                                                                                                                                const pill = document.createElement("div");
-                                                                                                                                                                                                                                                                                                                                  pill.className = "pill";
-                                                                                                                                                                                                                                                                                                                                    pill.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                        ${input.value}
-                                                                                                                                                                                                                                                                                                                                            <button onclick="this.parentElement.remove()">−</button>
-                                                                                                                                                                                                                                                                                                                                              `;
-                                                                                                                                                                                                                                                                                                                                                container.appendChild(pill);
-                                                                                                                                                                                                                                                                                                                                                  input.value = "";
-                                                                                                                                                                                                                                                                                                                                                  }
-
-                                                                                                                                                                                                                                                                                                                                                  // ---- SCHEDULE LOGIC ----
-
-                                                                                                                                                                                                                                                                                                                                                  const schedule = document.getElementById("schedule");
-                                                                                                                                                                                                                                                                                                                                                  const durationSelect = document.getElementById("duration");
-
-                                                                                                                                                                                                                                                                                                                                                  durationSelect.addEventListener("change", generateSchedule);
-
-                                                                                                                                                                                                                                                                                                                                                  // Convert dropdown text to minutes
-                                                                                                                                                                                                                                                                                                                                                  function getMinutes(value) {
-                                                                                                                                                                                                                                                                                                                                                    if (value.includes("min")) {
-                                                                                                                                                                                                                                                                                                                                                        return parseInt(value);
-                                                                                                                                                                                                                                                                                                                                                          }
-
-                                                                                                                                                                                                                                                                                                                                                            if (value.includes(":")) {
-                                                                                                                                                                                                                                                                                                                                                                const parts = value.replace("h", "").split(":");
-                                                                                                                                                                                                                                                                                                                                                                    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
-                                                                                                                                                                                                                                                                                                                                                                      }
-
-                                                                                                                                                                                                                                                                                                                                                                        if (value.includes("h")) {
-                                                                                                                                                                                                                                                                                                                                                                            return parseInt(value) * 60;
-                                                                                                                                                                                                                                                                                                                                                                              }
-                                                                                                                                                                                                                                                                                                                                                                              }
-
-                                                                                                                                                                                                                                                                                                                                                                              // Format time to 12h AM/PM
-                                                                                                                                                                                                                                                                                                                                                                              function formatTime(hours, minutes) {
-                                                                                                                                                                                                                                                                                                                                                                                const ampm = hours >= 12 ? "PM" : "AM";
-                                                                                                                                                                                                                                                                                                                                                                                  let h = hours % 12;
-                                                                                                                                                                                                                                                                                                                                                                                    if (h === 0) h = 12;
-                                                                                                                                                                                                                                                                                                                                                                                      const m = minutes.toString().padStart(2, "0");
-                                                                                                                                                                                                                                                                                                                                                                                        return `${h}:${m} ${ampm}`;
-                                                                                                                                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                                                                                                                                        function generateSchedule() {
-                                                                                                                                                                                                                                                                                                                                                                                          schedule.innerHTML = "";
-
-                                                                                                                                                                                                                                                                                                                                                                                            const interval = getMinutes(durationSelect.value);
-
-                                                                                                                                                                                                                                                                                                                                                                                              let currentMinutes = 5 * 60;      // 05:00 AM
-                                                                                                                                                                                                                                                                                                                                                                                                const endMinutes = 17 * 60;       // 17:00 (5PM)
-
-                                                                                                                                                                                                                                                                                                                                                                                                  while (currentMinutes <= endMinutes) {
-                                                                                                                                                                                                                                                                                                                                                                                                      const hours = Math.floor(currentMinutes / 60);
-                                                                                                                                                                                                                                                                                                                                                                                                          const minutes = currentMinutes % 60;
-
-                                                                                                                                                                                                                                                                                                                                                                                                              const row = document.createElement("div");
-                                                                                                                                                                                                                                                                                                                                                                                                                  row.className = "schedule-row";
-                                                                                                                                                                                                                                                                                                                                                                                                                      row.innerHTML = `
-                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="cell">${formatTime(hours, minutes)}</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="cell">Airlock</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="cell">Car</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                            `;
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                schedule.appendChild(row);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    currentMinutes += interval;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      }
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      // Initial load
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      generateSchedule();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      </script>
-                                                                                                                                                                                                                                                                          </script>
-
-                                                                                                                                                                                                                                                                          </body>
-                                                                                                                                                                                                                                                                          </html>
+  <script src="main.js"></script>
+</body>
+</html>

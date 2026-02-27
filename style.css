@@ -1,0 +1,155 @@
+:root {
+  --bg: #f4f4f4;
+  --card: #ffffff;
+  --text: #222;
+  --border: #e0e0e0;
+  --pill: #f1f1f1;
+}
+
+body.dark {
+  --bg: #111;
+  --card: #1c1c1c;
+  --text: #f5f5f5;
+  --border: #333;
+  --pill: #2a2a2a;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  transition: 0.3s ease;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.toggle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.meal-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.meal-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 8px;
+}
+
+.meal-input-wrapper input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 90px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.meal-label {
+  font-size: 25px;
+  opacity: 0.6;
+}
+
+.add-btn {
+  border: none;
+  background: var(--pill);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  padding: 4px 8px;
+  font-size: 14px;
+  height: 28px;
+}
+
+.pill button {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  opacity: 0.6;
+}
+
+.pill button:hover {
+  opacity: 1;
+}
+
+select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.schedule {
+  display: grid;
+  gap: 10px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr;
+  gap: 10px;
+}
+
+.cell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.save-btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+}
